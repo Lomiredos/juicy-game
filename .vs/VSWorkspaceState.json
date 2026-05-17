@@ -1,0 +1,23 @@
+{
+  "OutputFoldersPerTargetSystem": {
+    "Ordinateur local": [
+      "build"
+    ]
+  },
+  "ExpandedNodes": [
+    "",
+    "\\extern",
+    "\\extern\\eliott-ecs",
+    "\\extern\\eliott-ecs\\include",
+    "\\extern\\eliott-ecs\\include\\ecs",
+    "\\extern\\eliott-math",
+    "\\extern\\eliott-math\\include",
+    "\\extern\\eliott-math\\include\\math",
+    "\\include",
+    "\\include\\juicy-game",
+    "\\include\\juicy-game\\Components",
+    "\\include\\juicy-game\\Systems"
+  ],
+  "SelectedNode": "\\include\\juicy-game\\Systems\\RenderSystem.hpp",
+  "PreviewInSolutionExplorer": false
+}

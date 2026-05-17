@@ -1,4 +1,13 @@
 cmake_minimum_required(VERSION 3.20)
+
+if(NOT DEFINED CMAKE_TOOLCHAIN_FILE)
+    if(DEFINED ENV{VCPKG_ROOT})
+        set(CMAKE_TOOLCHAIN_FILE "$ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake" CACHE STRING "")
+    else()
+        set(CMAKE_TOOLCHAIN_FILE "C:/Dev/vcpkg/scripts/buildsystems/vcpkg.cmake" CACHE STRING "")
+    endif()
+endif()
+
 project(juicy-game VERSION 1.0.0 LANGUAGES CXX)
 
 set(CMAKE_CXX_USE_RESPONSE_FILE_FOR_INCLUDES OFF)
@@ -14,7 +23,7 @@ add_subdirectory(extern/eliott-physics-3d)
 
 add_executable(juicy-game
     src/main.cpp
-)
+ "src/Engine.cpp")
 
 target_include_directories(juicy-game PUBLIC
     include/
