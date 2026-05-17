@@ -2,30 +2,30 @@
 
 #include "MySystem.hpp"
 #include "../Components/TransformComponent.hpp"
+#include "Renderer3D.hpp"
 
-#include "raylib.h"
-#include "rlgl.h"
-
-class RenderSystem : public MySystem {
-
-
+class RenderSystem : public MySystem
+{
 public:
-	
-	void render(ee::ecs::World& _world, Camera3D& _cam) override {
-		
+    void render(ee::ecs::World& _world, ee::renderer::Renderer3D& _renderer) override
+    {
+        _renderer.BeginScene();
 
-		BeginMode3D(_cam);
+        for (auto& id : m_entities)
+        {
+            auto& t = _world.getComponent<TransformComponent>(id);
 
-		
-		for (auto& id : m_entities) {
-			auto& transformComp = _world.getComponent<TransformComponent>(id);
-			rlPushMatrix();
-			rlTranslatef(transformComp.position.x, transformComp.position.y, transformComp.position.z);
-			DrawCube({ 0, 0, 0 }, transformComp.size.x, transformComp.size.y, transformComp.size.z, RED);
-			rlPopMatrix();
-		}
+            _renderer.PushMatrix();
+            _renderer.Translate(t.position.x, t.position.y, t.position.z);
+            _renderer.Rotate(t.rotation.x, 1, 0, 0);
+            _renderer.Rotate(t.rotation.y, 0, 1, 0);
+            _renderer.Rotate(t.rotation.z, 0, 0, 1);
+            _renderer.DrawBox({ 0, 0, 0 }, { t.size.x, t.size.y, t.size.z }, RED);
+            _renderer.DrawBoxWires({ 0, 0, 0 }, { t.size.x, t.size.y, t.size.z }, DARKGRAY);
+            _renderer.PopMatrix();
+        }
 
-
-		EndMode3D();
-	}
+        _renderer.DrawGrid(50, 1.0f);
+        _renderer.EndScene();
+    }
 };

@@ -1,0 +1,45 @@
+[33mcommit 05fcc98036dc647e64b99f5d76ea5d6e6e37c8e6[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: Lomiredos <baudoineliott1@gmail.com>
+Date:   Sun May 17 20:54:07 2026 +0200
+
+    install ecs and gitignore
+
+ .gitignore                                         |    3 [32m+[m
+ .vs/CMake Overview                                 |    0
+ .vs/ProjectSettings.json                           |    3 [32m+[m
+ .vs/VSWorkspaceState.json                          |   23 [32m+[m
+ .vs/cmake.db                                       |  Bin [31m0[m -> [32m176128[m bytes
+ .../6a5bab89-73bf-466e-8061-1ae7e91138a5.vsidx     |  Bin [31m0[m -> [32m6868[m bytes
+ .../6cceb2a0-5768-42cf-b255-eeb237630ac3.vsidx     |  Bin [31m0[m -> [32m7866[m bytes
+ .../eae8cded-81b0-48d3-86a1-52d23902f124.vsidx     |  Bin [31m0[m -> [32m53743[m bytes
+ .../ec94badb-9876-4121-bad4-4f3905ade636.vsidx     |  Bin [31m0[m -> [32m34727[m bytes
+ .../fb54d5c1-c075-410b-a630-34735c4deb07.vsidx     |  Bin [31m0[m -> [32m10819[m bytes
+ .vs/juicy-game/config/applicationhost.config       | 1011 [32m++++++++++++++++++++[m
+ .vs/juicy-game/v17/.wsuo                           |  Bin [31m0[m -> [32m73216[m bytes
+ .vs/juicy-game/v17/Browse.VC.db                    |  Bin [31m0[m -> [32m49364992[m bytes
+ .vs/juicy-game/v17/Solution.VC.db                  |  Bin [31m0[m -> [32m438272[m bytes
+ .../v17/ipch/AutoPCH/48f367a8b6c80f33/VECTOR2.ipch |  Bin [31m0[m -> [32m5636096[m bytes
+ .../v17/ipch/AutoPCH/68aa3c342f127fb4/WORLD.ipch   |  Bin [31m0[m -> [32m48955392[m bytes
+ .../v17/ipch/AutoPCH/75ae945264715e5f/ENGINE.ipch  |  Bin [31m0[m -> [32m48693248[m bytes
+ .../AutoPCH/82a49edacf53b68e/AUDIOMANAGER.ipch     |  Bin [31m0[m -> [32m52363264[m bytes
+ .../v17/ipch/AutoPCH/98443052b32c8e20/ENGINE.ipch  |  Bin [31m0[m -> [32m103219200[m bytes
+ .../v17/ipch/AutoPCH/9d54dd7ec08a32ff/MAIN.ipch    |  Bin [31m0[m -> [32m94568448[m bytes
+ .../AutoPCH/a5ee0bdd2dc82c1c/MOTIONCOMPONENT.ipch  |  Bin [31m0[m -> [32m5636096[m bytes
+ .../ac068074fedfe108/TRANSFORMCOMPONENT.ipch       |  Bin [31m0[m -> [32m5636096[m bytes
+ .../v17/ipch/AutoPCH/bc2f549f924fcd74/VECTOR3.ipch |  Bin [31m0[m -> [32m5636096[m bytes
+ .../AutoPCH/c297f5f49e501666/RENDERSYSTEM.ipch     |  Bin [31m0[m -> [32m26869760[m bytes
+ .../AutoPCH/f352a6bd77a6e425/COMPONENTMANAGER.ipch |  Bin [31m0[m -> [32m78577664[m bytes
+ .../ipch/AutoPCH/f9071e317b526b78/MYSYSTEM.ipch    |  Bin [31m0[m -> [32m26869760[m bytes
+ .vs/slnx.sqlite                                    |  Bin [31m0[m -> [32m229376[m bytes
+ CMakeLists.txt                                     |   11 [32m+[m[31m-[m
+ CMakePresets.json                                  |   17 [32m+[m
+ CMakeSettings.json                                 |   15 [32m+[m
+ actual.txt                                         |    0
+ include/juicy-game/Components/MotionComponent.hpp  |   11 [32m+[m
+ .../juicy-game/Components/TransformComponent.hpp   |    9 [32m+[m
+ include/juicy-game/Engine.hpp                      |   33 [32m+[m
+ include/juicy-game/Systems/MySystem.hpp            |   15 [32m+[m
+ include/juicy-game/Systems/RenderSystem.hpp        |   31 [32m+[m
+ src/Engine.cpp                                     |  112 [32m+++[m
+ src/main.cpp                                       |   15 [32m+[m
+ 38 files changed, 1308 insertions(+), 1 deletion(-)
