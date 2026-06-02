@@ -9,5 +9,5 @@ class MySystem : public ee::ecs::System
 public:
     int priority = 0;
     virtual void update(ee::ecs::World& _world, float _dt) {};
-    virtual void render(ee::ecs::World& _world, ee::renderer::Renderer3D& _renderer) {};
+    virtual void render(ee::ecs::World& _world, ee::renderer::Renderer3D& _renderer, bool _showDebug) {};
 };

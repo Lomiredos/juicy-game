@@ -1,5 +1,6 @@
 
 #include "juicy-game/Engine.hpp"
+#include "juicy-game/Managers/SoundsManager.hpp"
 int main()
 {
 	Engine engine;

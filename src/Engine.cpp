@@ -1,64 +1,53 @@
 #include "juicy-game/Engine.hpp"
-#include "juicy-game/Systems/RenderSystem.hpp"
-#include "juicy-game/Components/TransformComponent.hpp"
-
-#include "raylib.h"
+#include "juicy-game/Scenes/mainScene.hpp"
+#include "juicy-game/Scenes/MenuScene.hpp"
+#include "juicy-game/Input/InputManager.hpp"
+#include "juicy-game/Input/ControllerSelectScreen.hpp"
+#include <SDL2/SDL.h>
 
 void Engine::Start(const char* _name, int _width, int _height, int _targetFPS)
 {
-    m_renderer.Init(_width, _height, _name, _targetFPS);
+	SDL_InitSubSystem(SDL_INIT_GAMECONTROLLER);
+	m_renderer.Init(_width, _height, _name, _targetFPS);
 
-    SetUpSystem();
-    initFirstEntity();
+	auto gameScene    = std::make_unique<mainScene>(m_sceneManager, 0 );
+	mainScene* gamePtr = gameScene.get();
+
+	ee::SceneId gameId = m_sceneManager.addScene(std::move(gameScene));
+	ee::SceneId menuId = m_sceneManager.addScene(
+		std::make_unique<MenuScene>(m_sceneManager, gameId));
+
+	gamePtr->setMenuId(menuId);
+
+	m_sceneManager.setCurrentScene(menuId, m_renderer);
+
+	InputManager::getInstance().refreshControllers();
+	SelectController();
 }
 
 void Engine::Run()
 {
-    while (!WindowShouldClose())
-    {
-        Update();
-        Render();
-    }
+	while (!WindowShouldClose())
+	{
+		m_sceneManager.flushPending();
+		Update();
+		if (!WindowShouldClose())
+			Render();
+	}
 }
 
 void Engine::Render()
 {
-    m_renderer.BeginFrame();
-
-    for (auto& system : m_systems)
-        system->render(m_world, m_renderer);
-
-    m_renderer.EndFrame();
+	m_sceneManager.getCurrentScene().onRender(m_renderer);
 }
 
 void Engine::Update()
 {
-    float dt = GetFrameTime();
-    for (auto& system : m_systems)
-        system->update(m_world, dt);
+	m_sceneManager.getCurrentScene().onUpdate();
 }
 
 void Engine::Quit()
 {
-    CloseWindow();
-}
-
-void Engine::initFirstEntity()
-{
-    auto first = m_world.createEntity();
-    m_world.addComponent(first, TransformComponent{ {0, 0, 0}, {2.f, 2.f, 2.f}, {0, 0, 0}, {1, 1, 1} });
-}
-
-void Engine::SetUpSystem()
-{
-    ee::ecs::Signature sig;
-
-    m_systems.push_back(m_world.registerSystem<RenderSystem>());
-    m_systems.back()->priority = 100;
-    sig.reset();
-    sig.set(ee::ecs::getComponentID<TransformComponent>());
-    m_world.setSystemSignature<RenderSystem>(sig);
-
-    std::sort(m_systems.begin(), m_systems.end(),
-        [](const auto& _a, const auto& _b) { return _a->priority < _b->priority; });
+	if (IsWindowReady())
+		CloseWindow();
 }
